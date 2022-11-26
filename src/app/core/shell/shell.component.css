@@ -1,0 +1,59 @@
+.wrapper{
+  min-height: 100vh;
+  background: #ccc;
+  display: flex;
+  flex-direction: column;
+}
+.header, .footer{
+  background: #666;
+  color: #fff;
+}
+.content {
+  display: flex;
+  flex: 1;
+  background: #999;
+  color: #000;
+}
+.columns{
+  display: flex;
+  flex:1;
+}
+.main{
+  flex: 1;
+  order: 2;
+  background: #eee;
+  display: flex;
+  flex-direction: column;
+  min-width: 40%;
+}
+
+.map-container{
+  height: 60%;
+  overflow: auto;
+  resize: vertical;
+}
+
+.table-container{
+  min-height: 20%;
+  flex: 1;
+  background-color: #f0f0ff;
+}
+
+.sidebar-left{
+  min-width: 10%;
+  background: #ccc;
+  order: 1;
+  resize: horizontal;
+  overflow: auto;
+}
+.sidebar-right{
+  min-width: 20%;
+  order: 3;
+  background: #ddd;
+  resize: horizontal;
+  overflow: auto;
+  direction: rtl;
+}
+.sidebar-right-content{
+  direction: ltr;
+}
