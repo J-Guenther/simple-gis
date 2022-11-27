@@ -1,5 +1,5 @@
-<app-shell>
+<app-shell (mapSizeChange)="map.updateSize()">
 
-  <div>Hi</div>
+  <app-map [map]="map"></app-map>
 
 </app-shell>

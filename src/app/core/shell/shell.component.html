@@ -6,7 +6,7 @@
     <div class="columns">
       <main class="main" #mainContainer>
         <div class="map-container" #mapContainer [ngStyle]="!showTable ? {'maxHeight': '100%', 'height': '100%', 'resize': 'none'} : {'resize': 'vertical'}">
-          <ng-content select="p"></ng-content>
+          <ng-content select="app-map"></ng-content>
         </div>
         <div [hidden]="!showTable" class="table-container" id="table-container">
           Table

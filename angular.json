@@ -23,10 +23,18 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/ol/ol.css",
               "src/custom-theme.scss",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "geotiffimage",
+              "xml-utils",
+              "lru-cache",
+              "web-worker",
+              "rbush"
+            ]
           },
           "configurations": {
             "production": {

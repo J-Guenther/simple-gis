@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, EventEmitter, OnDestroy, OnInit, Output, ViewChild} from '@angular/core';
 import {BreakpointObserver, Breakpoints, BreakpointState} from "@angular/cdk/layout";
 
 @Component({
@@ -18,6 +18,8 @@ export class ShellComponent implements OnInit, AfterViewInit, OnDestroy {
 
   isMobile = false
   showTable = true
+
+  @Output('mapSizeChange') mapSizeEvent = new EventEmitter()
 
   constructor(private breakPointObserver: BreakpointObserver) {
 
@@ -45,6 +47,7 @@ export class ShellComponent implements OnInit, AfterViewInit, OnDestroy {
       if (!this.showTable) {
         return
       }
+      this.mapSizeEvent.emit()
       const height = entries[0].contentRect.height
       const minTableHeight = this.mainContainer.nativeElement.offsetHeight / 100 * 30
       const maxMapHeight = this.mainContainer.nativeElement.offsetHeight - minTableHeight
@@ -61,6 +64,7 @@ export class ShellComponent implements OnInit, AfterViewInit, OnDestroy {
       if (width > maxPanelWidth) {
         this.sidebarRight.nativeElement.style.maxWidth = maxPanelWidth + "px"
       }
+      this.mapSizeEvent.emit()
     })
     this.rightSidePanelObserver.observe(this.sidebarRight.nativeElement)
 
@@ -71,6 +75,7 @@ export class ShellComponent implements OnInit, AfterViewInit, OnDestroy {
       if (width > maxPanelWidth) {
         this.sidebarLeft.nativeElement.style.maxWidth = maxPanelWidth + "px"
       }
+      this.mapSizeEvent.emit()
     })
     this.leftSidePanelObserver.observe(this.sidebarLeft.nativeElement)
   }
