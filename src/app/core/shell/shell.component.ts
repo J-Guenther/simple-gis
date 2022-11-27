@@ -1,4 +1,5 @@
 import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {BreakpointObserver, Breakpoints, BreakpointState} from "@angular/cdk/layout";
 
 @Component({
   selector: 'app-shell',
@@ -15,17 +16,24 @@ export class ShellComponent implements OnInit, AfterViewInit, OnDestroy {
   leftSidePanelObserver: ResizeObserver
   rightSidePanelObserver: ResizeObserver
 
-  constructor() {
+  isMobile = false
+  showTable = true
+
+  constructor(private breakPointObserver: BreakpointObserver) {
+
   }
 
   ngOnInit(): void {
-
-
+    this.breakPointObserver.observe([Breakpoints.WebPortrait, Breakpoints.Tablet, Breakpoints.Handset]).subscribe((state: BreakpointState) => {
+      this.isMobile = state.matches
+    })
+    this.breakPointObserver.observe([Breakpoints.Web, Breakpoints.TabletPortrait]).subscribe((state: BreakpointState) => {
+      this.showTable = state.matches
+    })
   }
 
   ngAfterViewInit() {
     this.initializeResizeObservers()
-
   }
 
   ngOnDestroy() {
@@ -34,6 +42,9 @@ export class ShellComponent implements OnInit, AfterViewInit, OnDestroy {
 
   initializeResizeObservers() {
     this.mapResizeObserver = new ResizeObserver(entries => {
+      if (!this.showTable) {
+        return
+      }
       const height = entries[0].contentRect.height
       const minTableHeight = this.mainContainer.nativeElement.offsetHeight / 100 * 30
       const maxMapHeight = this.mainContainer.nativeElement.offsetHeight - minTableHeight

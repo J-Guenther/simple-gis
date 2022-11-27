@@ -5,15 +5,15 @@
   <section class="content">
     <div class="columns">
       <main class="main" #mainContainer>
-        <div class="map-container" #mapContainer>
-          Map
+        <div class="map-container" #mapContainer [ngStyle]="!showTable ? {'maxHeight': '100%', 'height': '100%', 'resize': 'none'} : {'resize': 'vertical'}">
+          <ng-content select="p"></ng-content>
         </div>
-        <div class="table-container" id="table-container">
+        <div [hidden]="!showTable" class="table-container" id="table-container">
           Table
         </div>
       </main>
-      <aside class="sidebar-left" #sidebarLeft>Layers</aside>
-      <aside class="sidebar-right" #sidebarRight>
+      <aside [hidden]="isMobile" class="sidebar-left" #sidebarLeft>Layers</aside>
+      <aside [hidden]="isMobile" class="sidebar-right" #sidebarRight>
         <div class="sidebar-right-content">
           Information/Tool UI
         </div>
