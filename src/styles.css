@@ -5,9 +5,26 @@ html, body {
   min-width: 100%;
   max-height: 100%;
   overflow: hidden;
+  color: white;
 }
 
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.dark-background {
+  background-color: #1E1F22;
+}
+
+.dark-foreground {
+  background-color: #2B2D30;
+}
+
+.dark-foreground-hover {
+  background-color: #2B2D30;
+}
+
+.dark-foreground-hover:hover {
+  background-color: #43454A;
 }

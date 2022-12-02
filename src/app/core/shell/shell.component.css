@@ -5,14 +5,11 @@
   flex-direction: column;
 }
 .header, .footer{
-  background: #666;
-  color: #fff;
 }
+
 .content {
   display: flex;
   flex: 1;
-  background: #999;
-  color: #000;
 }
 .columns{
   display: flex;
@@ -21,13 +18,13 @@
 .main{
   flex: 1;
   order: 2;
-  background: #eee;
   display: flex;
   flex-direction: column;
   min-width: 40%;
 }
 
 .map-container{
+  padding-top: 5px;
   height: 60%;
   overflow: auto;
   resize: vertical;
@@ -36,20 +33,19 @@
 .table-container{
   min-height: 20%;
   flex: 1;
-  background-color: #f0f0ff;
 }
 
 .sidebar-left{
   min-width: 10%;
-  background: #ccc;
   order: 1;
   resize: horizontal;
   overflow: auto;
+  padding: 5px;
 }
 .sidebar-right{
   min-width: 20%;
   order: 3;
-  background: #ddd;
+  background: #1E1F22;
   resize: horizontal;
   overflow: auto;
   direction: rtl;
