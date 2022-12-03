@@ -2,7 +2,7 @@
   <app-layer-toolbar></app-layer-toolbar>
   <div class="list-background dark-foreground">
     <div cdkDropList class="layer-list dark-foreground" (cdkDropListDropped)="drop($event)">
-      <div class="layer-box dark-foreground-hover" *ngFor="let layer of layers" cdkDrag>{{layer['name']}} <mat-icon (click)="layer['visible'] = ! layer['visible']">{{layer['visible'] ? 'visibility' : 'visibility_off'}}</mat-icon> </div>
+      <div class="layer-box dark-foreground-hover not-selectable" *ngFor="let layer of layers" cdkDrag>{{layer.get('title')}} <mat-icon class="clickable" (click)="layer.setVisible(!layer.getVisible())">{{layer.getVisible() ? 'visibility' : 'visibility_off'}}</mat-icon> </div>
     </div>
   </div>
 </div>
