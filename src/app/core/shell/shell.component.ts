@@ -69,10 +69,12 @@ export class ShellComponent implements OnInit, AfterViewInit, OnDestroy {
     this.rightSidePanelObserver.observe(this.sidebarRight.nativeElement)
 
     this.leftSidePanelObserver = new ResizeObserver(entries => {
+      console.log("resize!")
       const width = entries[0].contentRect.width
       const minMarginWidth = this.mainContainer.nativeElement.offsetWidth / 100 * 80
       const maxPanelWidth = this.mainContainer.nativeElement.offsetWidth - minMarginWidth
       if (width > maxPanelWidth) {
+        // TODO reset / recalculate max values after Window SIze changed
         this.sidebarLeft.nativeElement.style.maxWidth = maxPanelWidth + "px"
       }
       this.mapSizeEvent.emit()

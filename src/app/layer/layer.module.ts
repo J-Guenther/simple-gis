@@ -9,6 +9,11 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import { BottomSheetAddLayerComponent } from './bottom-sheet-add-layer/bottom-sheet-add-layer.component';
 import {MAT_BOTTOM_SHEET_DATA, MatBottomSheetModule, MatBottomSheetRef} from "@angular/material/bottom-sheet";
+import {MatMenuModule} from "@angular/material/menu";
+import { BasemapContextComponent } from './context-menus/basemap-context/basemap-context.component';
+import { OpacityDialogComponent } from './opacity-dialog/opacity-dialog.component';
+import {MatSliderModule} from "@angular/material/slider";
+import {MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef} from "@angular/material/dialog";
 
 
 
@@ -16,7 +21,9 @@ import {MAT_BOTTOM_SHEET_DATA, MatBottomSheetModule, MatBottomSheetRef} from "@a
   declarations: [
     LayerListComponent,
     LayerToolbarComponent,
-    BottomSheetAddLayerComponent
+    BottomSheetAddLayerComponent,
+    BasemapContextComponent,
+    OpacityDialogComponent
   ],
   imports: [
     CommonModule,
@@ -25,14 +32,18 @@ import {MAT_BOTTOM_SHEET_DATA, MatBottomSheetModule, MatBottomSheetRef} from "@a
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
-    MatBottomSheetModule
+    MatBottomSheetModule,
+    MatMenuModule,
+    MatSliderModule,
+    MatDialogModule
   ],
   exports: [
     LayerListComponent
   ],
   providers: [
     { provide: MatBottomSheetRef, useValue: {} },
-    { provide: MAT_BOTTOM_SHEET_DATA, useValue: {} }
+    { provide: MAT_BOTTOM_SHEET_DATA, useValue: {} },
+    { provide: MatDialogRef, useValue: {}},
   ],
 })
 export class LayerModule { }

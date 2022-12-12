@@ -1,0 +1,13 @@
+<button mat-icon-button [matMenuTriggerFor]="menu">
+  <mat-icon>more_vert</mat-icon>
+</button>
+<mat-menu #menu="matMenu" class="dark-foreground">
+  <button mat-menu-item (click)="openOpacityDialog()">
+    <mat-icon>opacity</mat-icon>
+    <span>Opacity</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon color="warn">delete</mat-icon>
+    <span>Delete</span>
+  </button>
+</mat-menu>

@@ -1,0 +1,20 @@
+<h1 mat-dialog-title>Opacity for {{data.get("title")}}</h1>
+<div mat-dialog-content>
+  <div class="container">
+    <mat-slider
+      [value]="initialOpacity"
+      thumbLabel
+      [displayWith]="formatLabel"
+      tickInterval="1"
+      step="0.1"
+      min="0"
+      max="1"
+      style="width: 100%"
+      (input)="data.setOpacity($event.value)"></mat-slider>
+  </div>
+
+</div>
+<div mat-dialog-actions [align]="'end'">
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Ok</button>
+</div>

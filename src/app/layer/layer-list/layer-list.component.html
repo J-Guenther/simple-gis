@@ -2,7 +2,17 @@
   <app-layer-toolbar></app-layer-toolbar>
   <div class="list-background dark-foreground">
     <div cdkDropList class="layer-list dark-foreground" (cdkDropListDropped)="drop($event)">
-      <div class="layer-box dark-foreground-hover not-selectable" *ngFor="let layer of layers" cdkDrag>{{layer.get('title')}} <mat-icon class="clickable" (click)="layer.setVisible(!layer.getVisible())">{{layer.getVisible() ? 'visibility' : 'visibility_off'}}</mat-icon> </div>
+      <div class="layer-box dark-foreground-hover not-selectable" *ngFor="let layer of layers" cdkDrag>
+        <div class="shorten-text">
+          {{layer.get('title')}}
+        </div>
+        <div class="no-wrap">
+          <button mat-icon-button (click)="layer.setVisible(!layer.getVisible())">
+            <mat-icon class="clickable">{{layer.getVisible() ? 'visibility' : 'visibility_off'}}</mat-icon>
+          </button>
+          <app-basemap-context [layer]="layer"></app-basemap-context>
+        </div>
+      </div>
     </div>
   </div>
 </div>

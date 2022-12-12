@@ -19,7 +19,7 @@ export class LayerListComponent implements OnInit {
 
   ngOnInit(): void {
     const map = this.mapService.mainMap
-    this.layers = this.layerService.getLayers(map).getArray()
+    this.layers = this.layerService.getLayers(map).getArray().slice().reverse()
     console.log(this.layers)
   }
 
