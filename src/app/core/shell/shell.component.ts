@@ -1,4 +1,14 @@
-import {AfterViewInit, Component, ElementRef, EventEmitter, OnDestroy, OnInit, Output, ViewChild} from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  EventEmitter,
+  HostListener,
+  OnDestroy,
+  OnInit,
+  Output,
+  ViewChild
+} from '@angular/core';
 import {BreakpointObserver, Breakpoints, BreakpointState} from "@angular/cdk/layout";
 
 @Component({
@@ -43,45 +53,46 @@ export class ShellComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   initializeResizeObservers() {
-    this.mapResizeObserver = new ResizeObserver(entries => {
+    this.mapResizeObserver = new ResizeObserver(() => {
       if (!this.showTable) {
         return
       }
       this.mapSizeEvent.emit()
-      const height = entries[0].contentRect.height
-      const minTableHeight = this.mainContainer.nativeElement.offsetHeight / 100 * 30
-      const maxMapHeight = this.mainContainer.nativeElement.offsetHeight - minTableHeight
-      if (height > maxMapHeight) {
-        this.mapContainer.nativeElement.style.maxHeight = maxMapHeight + "px"
-      }
+      const maxMapHeight = this.calculateMaxMapHeight();
+      this.mapContainer.nativeElement.style.maxHeight = maxMapHeight + "px"
     })
     this.mapResizeObserver.observe(this.mapContainer.nativeElement)
 
-    this.rightSidePanelObserver = new ResizeObserver(entries => {
-      const width = entries[0].contentRect.width
-      const minMarginWidth = this.mainContainer.nativeElement.offsetWidth / 100 * 50
-      const maxPanelWidth = this.mainContainer.nativeElement.offsetWidth - minMarginWidth
-      if (width > maxPanelWidth) {
-        this.sidebarRight.nativeElement.style.maxWidth = maxPanelWidth + "px"
-      }
+    this.rightSidePanelObserver = new ResizeObserver(() => {
+      const maxPanelWidth = this.calculateMaxPanelWidthRight();
+      this.sidebarRight.nativeElement.style.maxWidth = maxPanelWidth + "px"
       this.mapSizeEvent.emit()
     })
     this.rightSidePanelObserver.observe(this.sidebarRight.nativeElement)
 
-    this.leftSidePanelObserver = new ResizeObserver(entries => {
-      console.log("resize!")
-      const width = entries[0].contentRect.width
-      const minMarginWidth = this.mainContainer.nativeElement.offsetWidth / 100 * 80
-      const maxPanelWidth = this.mainContainer.nativeElement.offsetWidth - minMarginWidth
-      if (width > maxPanelWidth) {
-        // TODO reset / recalculate max values after Window SIze changed
-        this.sidebarLeft.nativeElement.style.maxWidth = maxPanelWidth + "px"
-      }
+    this.leftSidePanelObserver = new ResizeObserver(() => {
+      const maxPanelWidth = this.calculateMaxPanelWidthLeft();
+      this.sidebarLeft.nativeElement.style.maxWidth = maxPanelWidth + "px"
       this.mapSizeEvent.emit()
     })
     this.leftSidePanelObserver.observe(this.sidebarLeft.nativeElement)
   }
 
 
+  private calculateMaxPanelWidthLeft() {
+    const minMarginWidth = this.mainContainer.nativeElement.offsetWidth / 100 * 80
+    const maxPanelWidth = this.mainContainer.nativeElement.offsetWidth - minMarginWidth
+    return maxPanelWidth;
+  }
 
+  private calculateMaxPanelWidthRight() {
+    const minMarginWidth = this.mainContainer.nativeElement.offsetWidth / 100 * 50
+    const maxPanelWidth = this.mainContainer.nativeElement.offsetWidth - minMarginWidth
+    return maxPanelWidth;
+  }
+
+  private calculateMaxMapHeight() {
+    const minTableHeight = this.mainContainer.nativeElement.offsetHeight / 100 * 30
+    return this.mainContainer.nativeElement.offsetHeight - minTableHeight;
+  }
 }
