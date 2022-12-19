@@ -4,6 +4,8 @@ import {View} from "ol";
 import TileLayer from "ol/layer/Tile";
 import {OSM} from "ol/source";
 import OGCMapTile from "ol/source/OGCMapTile";
+import {SimpleGeometry} from "ol/geom";
+import {Extent} from "ol/extent";
 
 
 @Injectable({
@@ -27,7 +29,8 @@ export class MapService {
         new TileLayer({
           source: new OSM(),
           properties: {
-            'title': 'OSM BaseMap'
+            'title': 'OSM BaseMap',
+            'layerType': 'basemap'
           }
         }),
         new TileLayer({
@@ -35,10 +38,15 @@ export class MapService {
             url: 'https://maps.ecere.com/ogcapi/collections/blueMarble/map/tiles/WebMercatorQuad'
           }),
           properties: {
-            'title': 'Other BaseMap'
+            'title': 'Other BaseMap',
+            'layerType': 'basemap'
           }
         })
       ]
     });
+  }
+
+  fit(geometryOrExtend: Extent | SimpleGeometry){
+    this.mainMap.getView().fit(geometryOrExtend)
   }
 }

@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 import {OpacityDialogComponent} from "../../opacity-dialog/opacity-dialog.component";
 import BaseLayer from "ol/layer/Base";
+import {MapService} from "../../../map/services/map.service";
 
 @Component({
   selector: 'app-basemap-context',
@@ -26,5 +27,4 @@ export class BasemapContextComponent implements OnInit {
       console.log('The dialog was closed');
     });
   }
-
 }

@@ -4,7 +4,10 @@
     <span matLine>Create New</span>
   </a>
 
-  <a href="https://docs.google.com/" mat-list-item (click)="openLink($event)">
+  <input type="file" class="file-input"
+         (change)="onFileSelected($event)" #fileUpload>
+
+  <a mat-list-item (click)="fileUpload.click()">
     <span matListItemTitle>GeoJSON</span>
     <span matLine>Upload from Disk</span>
   </a>

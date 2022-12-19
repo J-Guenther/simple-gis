@@ -3,6 +3,7 @@ import {CdkDragDrop, moveItemInArray} from "@angular/cdk/drag-drop";
 import {LayerService} from "../services/layer.service";
 import {MapService} from "../../map/services/map.service";
 import BaseLayer from "ol/layer/Base";
+import VectorLayer from "ol/layer/Vector";
 
 @Component({
   selector: 'app-layer-list',
@@ -11,7 +12,7 @@ import BaseLayer from "ol/layer/Base";
 })
 export class LayerListComponent implements OnInit {
 
-  layers: BaseLayer[]
+  layers: (BaseLayer | VectorLayer<any>)[]
 
   constructor(private layerService: LayerService,
               private mapService: MapService) {
@@ -19,8 +20,10 @@ export class LayerListComponent implements OnInit {
 
   ngOnInit(): void {
     const map = this.mapService.mainMap
-    this.layers = this.layerService.getLayers(map).getArray().slice().reverse()
-    console.log(this.layers)
+    this.layerService.layerChange.subscribe(change => {
+      this.layers = this.layerService.getLayers(map).getArray().slice().reverse()
+      console.log(this.layers[0].getProperties()['layerType'])
+    })
   }
 
   drop(event: CdkDragDrop<string[]>) {

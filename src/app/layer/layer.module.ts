@@ -14,6 +14,7 @@ import { BasemapContextComponent } from './context-menus/basemap-context/basemap
 import { OpacityDialogComponent } from './opacity-dialog/opacity-dialog.component';
 import {MatSliderModule} from "@angular/material/slider";
 import {MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef} from "@angular/material/dialog";
+import { VectorContextComponent } from './context-menus/vector-context/vector-context.component';
 
 
 
@@ -23,7 +24,8 @@ import {MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef} from "@angula
     LayerToolbarComponent,
     BottomSheetAddLayerComponent,
     BasemapContextComponent,
-    OpacityDialogComponent
+    OpacityDialogComponent,
+    VectorContextComponent
   ],
   imports: [
     CommonModule,

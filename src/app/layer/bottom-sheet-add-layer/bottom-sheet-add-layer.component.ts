@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MatBottomSheetRef} from "@angular/material/bottom-sheet";
+import {FileService} from "../services/file.service";
 
 @Component({
   selector: 'app-bottom-sheet-add-layer',
@@ -8,7 +9,8 @@ import {MatBottomSheetRef} from "@angular/material/bottom-sheet";
 })
 export class BottomSheetAddLayerComponent implements OnInit {
 
-  constructor(private _bottomSheetRef: MatBottomSheetRef<BottomSheetAddLayerComponent>) {}
+  constructor(private _bottomSheetRef: MatBottomSheetRef<BottomSheetAddLayerComponent>,
+              private fileService: FileService) {}
 
   ngOnInit(): void {
   }
@@ -18,4 +20,12 @@ export class BottomSheetAddLayerComponent implements OnInit {
     event.preventDefault();
   }
 
+  onFileSelected($event: Event) {
+    const file:File = ($event.target as HTMLInputElement).files[0];
+
+    if (file) {
+      this.fileService.uploadFile(file)
+    }
+    this._bottomSheetRef.dismiss();
+  }
 }
