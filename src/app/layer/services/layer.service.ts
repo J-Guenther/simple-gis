@@ -8,6 +8,8 @@ import VectorSource from "ol/source/Vector";
 import {GeoJSON} from "ol/format";
 import {StyleService} from "./style.service";
 import {BehaviorSubject, Subject} from "rxjs";
+import TileLayer from "ol/layer/Tile";
+import {OSM} from "ol/source";
 
 @Injectable({
   providedIn: 'root'
@@ -45,6 +47,16 @@ export class LayerService {
         'layerType': 'vector'
       }
     });
+  }
+
+  createOSMBaseMapLayer(): TileLayer<any> {
+    return new TileLayer({
+      source: new OSM(),
+      properties: {
+        'title': 'OSM BaseMap',
+        'layerType': 'basemap'
+      }
+    })
   }
 
 }

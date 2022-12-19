@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import Map from 'ol/Map';
 import {MapService} from "./map/services/map.service";
+import {LayerService} from "./layer/services/layer.service";
 
 
 @Component({
@@ -13,8 +14,11 @@ export class AppComponent {
 
   map: Map;
 
-  constructor(private mapService: MapService) {
+  constructor(private mapService: MapService,
+              private layerService: LayerService) {
     this.mapService.initializeMap()
     this.map = this.mapService.mainMap
+    const basemap = this.layerService.createOSMBaseMapLayer()
+    this.layerService.addLayer(basemap, this.map)
   }
 }
