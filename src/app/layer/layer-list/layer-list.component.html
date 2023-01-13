@@ -11,8 +11,8 @@
           <button mat-icon-button (click)="layer.setVisible(!layer.getVisible())">
             <mat-icon class="clickable">{{layer.getVisible() ? 'visibility' : 'visibility_off'}}</mat-icon>
           </button>
-          <app-basemap-context *ngIf="layer.get('layerType') === 'basemap'" [layer]="layer"></app-basemap-context>
-          <app-vector-context *ngIf="layer.get('layerType') === 'vector'" [layer]="layer"></app-vector-context>
+          <app-basemap-context *ngIf="layer.get('layerType') === 'basemap'" [layer]="layer" (onRemove)="removeLayer($event)"></app-basemap-context>
+          <app-vector-context *ngIf="layer.get('layerType') === 'vector'" [layer]="layer" (onRemove)="removeLayer($event)"></app-vector-context>
         </div>
       </div>
     </div>

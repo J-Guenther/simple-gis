@@ -30,6 +30,15 @@ export class LayerService {
     return map.getLayers()
   }
 
+  removeLayer(layer: Layer, map: Map) {
+    const removedLayer = map.removeLayer(layer)
+    if (removedLayer) {
+      this.layerChange.next(true)
+    } else {
+      console.error(layer.get('title') + " could not be removed")
+    }
+  }
+
   createGeoJSONLayer(jsonObject: object, title: string): VectorLayer<any> {
     const vectorSource = new VectorSource({
       features: new GeoJSON({

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import BaseLayer from "ol/layer/Base";
 import {MatDialog} from "@angular/material/dialog";
 import {MapService} from "../../../map/services/map.service";
@@ -13,6 +13,7 @@ import VectorLayer from "ol/layer/Vector";
 export class VectorContextComponent implements OnInit {
 
   @Input() layer: BaseLayer
+  @Output('onRemove') onRemove = new EventEmitter()
 
   constructor(public dialog: MatDialog,
               private mapService: MapService) { }
@@ -32,6 +33,10 @@ export class VectorContextComponent implements OnInit {
 
   zoomToExtent() {
     this.mapService.fit((this.layer as VectorLayer<any>).getSource().getExtent())
+  }
+
+  removeLayer() {
+    this.onRemove.emit(this.layer)
   }
 
 

@@ -4,6 +4,7 @@ import {LayerService} from "../services/layer.service";
 import {MapService} from "../../map/services/map.service";
 import BaseLayer from "ol/layer/Base";
 import VectorLayer from "ol/layer/Vector";
+import {Layer} from "ol/layer";
 
 @Component({
   selector: 'app-layer-list',
@@ -33,4 +34,7 @@ export class LayerListComponent implements OnInit {
     }
   }
 
+  removeLayer(layer: Layer) {
+    this.layerService.removeLayer(layer, this.mapService.mainMap)
+  }
 }

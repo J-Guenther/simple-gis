@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 import {OpacityDialogComponent} from "../../opacity-dialog/opacity-dialog.component";
 import BaseLayer from "ol/layer/Base";
@@ -12,6 +12,7 @@ import {MapService} from "../../../map/services/map.service";
 export class BasemapContextComponent implements OnInit {
 
   @Input() layer: BaseLayer
+  @Output('onRemove') onRemove = new EventEmitter()
 
   constructor(public dialog: MatDialog) { }
 
@@ -26,5 +27,9 @@ export class BasemapContextComponent implements OnInit {
     dialogRef.afterClosed().subscribe(() => {
       console.log('The dialog was closed');
     });
+  }
+
+  removeLayer() {
+    this.onRemove.emit(this.layer)
   }
 }
