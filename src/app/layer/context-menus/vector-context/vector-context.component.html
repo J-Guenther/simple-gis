@@ -2,6 +2,10 @@
   <mat-icon>more_vert</mat-icon>
 </button>
 <mat-menu #menu="matMenu" class="dark-foreground">
+  <button mat-menu-item (click)="openFeatureTable()">
+    <mat-icon>table</mat-icon>
+    <span>Attribute Table</span>
+  </button>
   <button mat-menu-item (click)="openOpacityDialog()">
     <mat-icon>opacity</mat-icon>
     <span>Opacity</span>

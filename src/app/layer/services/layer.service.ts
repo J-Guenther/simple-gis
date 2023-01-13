@@ -47,6 +47,8 @@ export class LayerService {
       }).readFeatures(jsonObject),
     });
 
+    console.log(vectorSource.getFeatures()[0].getKeys())
+
     return new VectorLayer({
       source: vectorSource,
       style: this.styleService.styleFunction,

@@ -9,7 +9,7 @@
           <ng-content select="app-map"></ng-content>
         </div>
         <div [hidden]="!showTable" class="table-container dark-background" id="table-container">
-          Table
+          <ng-content select="app-feature-table"></ng-content>
         </div>
       </main>
       <aside [hidden]="isMobile" class="sidebar-left dark-background" #sidebarLeft>

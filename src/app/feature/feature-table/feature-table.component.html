@@ -1,0 +1,14 @@
+<div class="feature-table-container">
+  <div *ngIf="!dataSource">No Datasource</div>
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table dark-foreground">
+
+    <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
+      <th mat-header-cell *matHeaderCellDef>{{column}}</th>
+      <td mat-cell *matCellDef="let row">{{row.get(column)}}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

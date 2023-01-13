@@ -4,6 +4,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {MapService} from "../../../map/services/map.service";
 import {OpacityDialogComponent} from "../../opacity-dialog/opacity-dialog.component";
 import VectorLayer from "ol/layer/Vector";
+import {OpenTableService} from "../../services/open-table.service";
 
 @Component({
   selector: 'app-vector-context',
@@ -16,7 +17,8 @@ export class VectorContextComponent implements OnInit {
   @Output('onRemove') onRemove = new EventEmitter()
 
   constructor(public dialog: MatDialog,
-              private mapService: MapService) { }
+              private mapService: MapService,
+              private openTableService: OpenTableService) { }
 
   ngOnInit(): void {
   }
@@ -40,4 +42,7 @@ export class VectorContextComponent implements OnInit {
   }
 
 
+  openFeatureTable() {
+    this.openTableService.openTable.emit(this.layer as VectorLayer<any>)
+  }
 }

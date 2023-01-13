@@ -7,19 +7,21 @@ import {CoreModule} from "./core/core.module";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MapModule} from "./map/map.module";
 import {LayerModule} from "./layer/layer.module";
+import {FeatureModule} from "./feature/feature.module";
 
 @NgModule({
   declarations: [
     AppComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    CoreModule,
-    BrowserAnimationsModule,
-    MapModule,
-    LayerModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        CoreModule,
+        BrowserAnimationsModule,
+        MapModule,
+        LayerModule,
+        FeatureModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

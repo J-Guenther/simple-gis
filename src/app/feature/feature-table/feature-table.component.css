@@ -1,0 +1,17 @@
+.demo-table {
+  width: 100%;
+}
+
+.feature-table-container {
+  display: flex;
+  /*position: relative;*/
+  /*min-height: 200px;*/
+  max-height: 400px;
+  overflow: auto;
+  /*max-height: 100%;*/
+}
+
+table {
+  flex: 1
+}
+
