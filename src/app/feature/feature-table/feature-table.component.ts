@@ -1,11 +1,12 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
 import {FeatureDatasource} from "../datasource/feature-datasource";
 import {FeatureTableService} from "../services/feature-table.service";
 
 @Component({
   selector: 'app-feature-table',
   templateUrl: './feature-table.component.html',
-  styleUrls: ['./feature-table.component.css']
+  styleUrls: ['./feature-table.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FeatureTableComponent implements OnInit {
 

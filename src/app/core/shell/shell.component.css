@@ -3,6 +3,7 @@
   background: #ccc;
   display: flex;
   flex-direction: column;
+  max-height: 100%;
 }
 .header, .footer{
 }
@@ -34,6 +35,7 @@
   padding-top: 5px;
   min-height: 20%;
   flex: 1;
+  overflow: auto;
 }
 
 .sidebar-left{

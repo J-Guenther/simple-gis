@@ -1,4 +1,4 @@
-<div class="wrapper">
+<div (window:resize)="onResize($event)" class="wrapper" #wrapperContainer>
   <div class="header">
     <app-toolbar></app-toolbar>
   </div>
@@ -8,7 +8,7 @@
         <div class="map-container dark-background" #mapContainer [ngStyle]="!showTable ? {'maxHeight': '100%', 'height': '100%', 'resize': 'none'} : {'resize': 'vertical'}">
           <ng-content select="app-map"></ng-content>
         </div>
-        <div [hidden]="!showTable" class="table-container dark-background" id="table-container">
+        <div [hidden]="!showTable" class="table-container dark-background" id="table-container" #tableContainer>
           <ng-content select="app-feature-table"></ng-content>
         </div>
       </main>

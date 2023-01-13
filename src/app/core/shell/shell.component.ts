@@ -1,14 +1,4 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  EventEmitter,
-  HostListener,
-  OnDestroy,
-  OnInit,
-  Output,
-  ViewChild
-} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, EventEmitter, OnDestroy, OnInit, Output, ViewChild} from '@angular/core';
 import {BreakpointObserver, Breakpoints, BreakpointState} from "@angular/cdk/layout";
 
 @Component({
@@ -18,7 +8,9 @@ import {BreakpointObserver, Breakpoints, BreakpointState} from "@angular/cdk/lay
 })
 export class ShellComponent implements OnInit, AfterViewInit, OnDestroy {
 
+  @ViewChild("wrapperContainer") wrapperContainer: ElementRef
   @ViewChild("mapContainer") mapContainer: ElementRef
+  @ViewChild("tableContainer") tableContainer: ElementRef
   @ViewChild("mainContainer") mainContainer: ElementRef
   @ViewChild("sidebarRight") sidebarRight: ElementRef
   @ViewChild("sidebarLeft") sidebarLeft: ElementRef
@@ -45,6 +37,7 @@ export class ShellComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit() {
+    this.onResize(null)
     this.initializeResizeObservers()
   }
 
@@ -57,9 +50,10 @@ export class ShellComponent implements OnInit, AfterViewInit, OnDestroy {
       if (!this.showTable) {
         return
       }
-      this.mapSizeEvent.emit()
+      // TODO kann calculation weg, jetzt wo main eine maxHeight hat? Man könnte nun alles über height % in CSS machen und nur noch MapSize Event emitten damit sich MapComponent updatet.
       const maxMapHeight = this.calculateMaxMapHeight();
       this.mapContainer.nativeElement.style.maxHeight = maxMapHeight + "px"
+      this.mapSizeEvent.emit()
     })
     this.mapResizeObserver.observe(this.mapContainer.nativeElement)
 
@@ -78,7 +72,6 @@ export class ShellComponent implements OnInit, AfterViewInit, OnDestroy {
     this.leftSidePanelObserver.observe(this.sidebarLeft.nativeElement)
   }
 
-
   private calculateMaxPanelWidthLeft() {
     const minMarginWidth = this.mainContainer.nativeElement.offsetWidth / 100 * 80
     const maxPanelWidth = this.mainContainer.nativeElement.offsetWidth - minMarginWidth
@@ -94,5 +87,9 @@ export class ShellComponent implements OnInit, AfterViewInit, OnDestroy {
   private calculateMaxMapHeight() {
     const minTableHeight = this.mainContainer.nativeElement.offsetHeight / 100 * 30
     return this.mainContainer.nativeElement.offsetHeight - minTableHeight;
+  }
+
+  onResize($event: any) {
+    this.mainContainer.nativeElement.style.maxHeight = (this.wrapperContainer.nativeElement.offsetHeight - 84) + "px"
   }
 }
