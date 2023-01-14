@@ -50,9 +50,6 @@ export class ShellComponent implements OnInit, AfterViewInit, OnDestroy {
       if (!this.showTable) {
         return
       }
-      // TODO kann calculation weg, jetzt wo main eine maxHeight hat? Man könnte nun alles über height % in CSS machen und nur noch MapSize Event emitten damit sich MapComponent updatet.
-      const maxMapHeight = this.calculateMaxMapHeight();
-      this.mapContainer.nativeElement.style.maxHeight = maxMapHeight + "px"
       this.mapSizeEvent.emit()
     })
     this.mapResizeObserver.observe(this.mapContainer.nativeElement)
@@ -82,11 +79,6 @@ export class ShellComponent implements OnInit, AfterViewInit, OnDestroy {
     const minMarginWidth = this.mainContainer.nativeElement.offsetWidth / 100 * 50
     const maxPanelWidth = this.mainContainer.nativeElement.offsetWidth - minMarginWidth
     return maxPanelWidth;
-  }
-
-  private calculateMaxMapHeight() {
-    const minTableHeight = this.mainContainer.nativeElement.offsetHeight / 100 * 30
-    return this.mainContainer.nativeElement.offsetHeight - minTableHeight;
   }
 
   onResize($event: any) {
