@@ -5,6 +5,7 @@ import {Feature} from "ol";
 export class FeatureDatasource extends DataSource<Feature> {
   private _dataStream = new ReplaySubject<Feature[]>()
   private _columnNames = new ReplaySubject<Set<string>>()
+  hasData = false
 
   constructor(initialData: Feature[]) {
     super();
@@ -24,8 +25,7 @@ export class FeatureDatasource extends DataSource<Feature> {
     const columnNames = new Set(data.map(value => value.getKeys()).flat())
     columnNames.delete("geometry")
     this._columnNames.next(columnNames)
-    console.log(data)
-    console.log(columnNames)
+    this.hasData = columnNames.size > 0
   }
 
   getColumnNames(): Observable<Set<string>> {

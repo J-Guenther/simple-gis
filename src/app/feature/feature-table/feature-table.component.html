@@ -1,5 +1,7 @@
+<app-table-tools></app-table-tools>
 <div class="feature-table-container">
-  <div *ngIf="!dataSource">No Datasource</div>
+
+  <div *ngIf="!dataSource.hasData">No table available</div>
 
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table dark-foreground">
 
