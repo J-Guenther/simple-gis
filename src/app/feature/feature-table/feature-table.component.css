@@ -10,3 +10,10 @@
 }
 
 
+tr.row:hover {
+  background: whitesmoke;
+}
+
+tr.row:active {
+  background: #efefef;
+}

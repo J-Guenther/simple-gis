@@ -7,7 +7,15 @@ import CircleStyle from "ol/style/Circle";
 })
 export class StyleService {
 
-
+  highlightStyle = new Style({
+    fill: new Fill({
+      color: '#eeeeee',
+    }),
+    stroke: new Stroke({
+      color: 'rgba(255, 255, 255, 0.7)',
+      width: 2,
+    }),
+  });
 
 
   constructor() {
@@ -87,5 +95,13 @@ export class StyleService {
     };
 
     return styles[feature.getGeometry().getType()];
+  }
+
+  addHighlighting(feature) {
+    feature.setStyle(this.highlightStyle)
+  }
+
+  removeHighlighting(feature) {
+    feature.setStyle(this.styleFunction(feature))
   }
 }
